@@ -8,6 +8,9 @@ shallow_clone: true
 build:
   parallel: true
   verbosity: normal
+before_build:
+- cmd: >-
+    miansha.bat
 after_build:
 - cmd: >-
     7z a -t7z -mx -ms=on %APPVEYOR_PROJECT_NAME%_trunk_%PLATFORM%.7z -xr@notrunk.lst .\%PLATFORM% README.md kiwi_passwords.yar mimicom.idl
