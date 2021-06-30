@@ -11,7 +11,10 @@ tools\mv ./mimikatz/mimikatz.c ./mimikatz/!_out!.c
 tools\mv ./mimikatz/mimikatz.ico ./mimikatz/!_out!.ico
 tools\mv ./mimikatz/mimikatz.rc ./mimikatz/!_out!.rc
 
-for %%a in (gentilkiwi MIMIKATZ _m_) do (
+call :RandomStr 10
+tools\grep.exe -rl --exclude-dir .git --exclude-dir tools --exclude-dir .idea --exclude *.vcxproj* --exclude miansha.bat --exclude mimikatz.sln "_m_" . | tools\xargs tools\sed -b -i "s/_m_/!_out!/g"
+
+for %%a in (gentilkiwi MIMIKATZ) do (
     call :RandomStr 10
     tools\grep.exe -rl --exclude-dir .git --exclude-dir tools --exclude-dir .idea --exclude miansha.bat --exclude mimikatz.sln "%%a" . | tools\xargs tools\sed -b -i "s/%%a/!_out!/g"
 )
