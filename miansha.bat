@@ -11,6 +11,8 @@ tools\mv ./mimikatz/mimikatz.h ./mimikatz/!_out!.h
 tools\mv ./mimikatz/mimikatz.c ./mimikatz/!_out!.c
 tools\mv ./mimikatz/mimikatz.ico ./mimikatz/!_out!.ico
 tools\mv ./mimikatz/mimikatz.rc ./mimikatz/!_out!.rc
+tools\mv ./mimikatz/mimikatz.vcxproj ./mimikatz/!_out!.vcxproj
+tools\mv ./mimikatz/mimikatz.vcxproj.filters ./mimikatz/!_out!.vcxproj.filters
 tools\mv ./mimikatz !_out!
 
 echo 处理需要重名名文件的
