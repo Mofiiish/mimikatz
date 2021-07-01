@@ -24,7 +24,7 @@ for %%a in (_m_) do (
 )
 
 echo 处理不需要重名名文件的
-for %%a in (gentilkiwi MIMIKATZ KIWI oe.eo Vincent MINIDUMP) do (
+for %%a in (gentilkiwi MIMIKATZ KIWI oe.eo Vincent MINIDUMP L_M_) do (
     call :RandomStr 5
     call :FileRC %%a !_out!
 )
