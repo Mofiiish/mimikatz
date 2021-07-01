@@ -24,7 +24,7 @@ for %%a in (_m_) do (
 )
 
 echo 处理不需要重名名文件的
-for %%a in (gentilkiwi MIMIKATZ KIWI oe.eo Vincent MINIDUMP) do (
+for %%a in (gentilkiwi MIMIKATZ KIWI oe.eo Vincent MINIDUMP _M_) do (
     call :RandomStr 10
     call :FileRC %%a !_out!
 )
@@ -35,6 +35,10 @@ tools\grep.exe -rl --exclude-dir .git --exclude-dir tools --exclude-dir .idea --
 
 call :FileRC minidump MiNidump
 call :FileRC logonpasswords logonPasswords
+call :FileRC PRINT_ERROR PRIN_ERROR
+call :FileRC kprintf kPRintf
+call :FileRC kerberos kerBeros
+call :FileRC process Process
 
 :: =================
 :: 生成随机字符串
