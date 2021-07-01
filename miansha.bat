@@ -5,7 +5,7 @@ setlocal enabledelayedexpansion
 set _out=
 
 rem mimikatz文件另外
-call :RandomStr 10
+call :RandomStr 5
 tools\grep.exe -rl --exclude-dir .git --exclude-dir tools --exclude-dir .idea --exclude miansha.bat "mimikatz" . | tools\xargs tools\sed -b -i "s/mimikatz/!_out!/g"
 tools\mv ./mimikatz/mimikatz.h ./mimikatz/!_out!.h
 tools\mv ./mimikatz/mimikatz.c ./mimikatz/!_out!.c
@@ -17,19 +17,19 @@ tools\mv ./mimikatz !_out!
 
 echo 处理需要重名名文件的
 for %%a in (_m_) do (
-    call :RandomStr 10
+    call :RandomStr 5
     call :FileRC %%a !_out!
     echo,!_out!
     call :FileRen %%a !_out!
 )
 
 echo 处理不需要重名名文件的
-for %%a in (gentilkiwi MIMIKATZ KIWI oe.eo Vincent MINIDUMP _M_) do (
-    call :RandomStr 10
+for %%a in (gentilkiwi MIMIKATZ KIWI oe.eo Vincent MINIDUMP) do (
+    call :RandomStr 5
     call :FileRC %%a !_out!
 )
 
-call :RandomStr 10
+call :RandomStr 5
 tools\grep.exe -rl --exclude-dir .git --exclude-dir tools --exclude-dir .idea --exclude miansha.bat --exclude mimikatz.sln "LSASS minidump" . | tools\xargs tools\sed -b -i "s/LSASS minidump/!_out!/g"
 
 
@@ -51,7 +51,7 @@ call :FileRC process Process
     set len=%d_len%
     @rem 随机"最小字符个数-最大字符个数"
     for /f "tokens=1,2 delims=- " %%a in ("%len%") do (
-            set /a min_len = %%a, max_len = %%a+5
+            set /a min_len = %%a, max_len = %%a+3
             set /a "len = %random% %% (max_len-min_len+1) + min_len"
     )
 
