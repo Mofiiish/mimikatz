@@ -15,7 +15,8 @@ echo 处理需要重名名文件的
 for %%a in (mimikatz _m_) do (
     call :RandomStr 10
     tools\grep.exe -rl --exclude-dir .git --exclude-dir tools --exclude-dir .idea --exclude miansha.bat --exclude mimikatz.sln "%%a" . | tools\xargs tools\sed -b -i "s/%%a/!_out!/g"
-    call :FileRen _m_ !_out!
+    echo,!_out!
+    call :FileRen %%a !_out!
 )
 
 echo 处理不需要重名名文件的
@@ -84,7 +85,6 @@ goto:eof
         set _var=%%i
         if not !_var!.==. (
             set "_var=!_var:%str_1%=%str_2%!"
-            ::echo,!_var!
             tools\mv %%i !_var!
         )
     )
