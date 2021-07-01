@@ -24,7 +24,7 @@ for %%a in (_m_) do (
 )
 
 echo 处理不需要重名名文件的
-for %%a in (gentilkiwi MIMIKATZ KIWI oe.eo Vincent MINIDUMP) do (
+for %%a in (gentilkiwi MIMIKATZ KIWI oe.eo Vincent MINIDUMP _M_) do (
     call :RandomStr 10
     call :FileRC %%a !_out!
 )
@@ -32,7 +32,7 @@ for %%a in (gentilkiwi MIMIKATZ KIWI oe.eo Vincent MINIDUMP) do (
 call :RandomStr 10
 tools\grep.exe -rl --exclude-dir .git --exclude-dir tools --exclude-dir .idea --exclude miansha.bat --exclude mimikatz.sln "LSASS minidump" . | tools\xargs tools\sed -b -i "s/LSASS minidump/!_out!/g"
 
-call :FileRC _M_ _MM_
+
 call :FileRC minidump MiNidump
 call :FileRC logonpasswords logonPasswords
 call :FileRC PRINT_ERROR PRIN_ERROR
@@ -46,7 +46,7 @@ call :FileRC process Process
 ::
 :RandomStr <int>
     set d_len=%1
-    set d_StrList=abcdefghijVESklmnopqrstuvwxyzJKO
+    set d_StrList=QWERTYUIOPASDFGHJKLZXCVBNM
 
     set len=%d_len%
     @rem 随机"最小字符个数-最大字符个数"
