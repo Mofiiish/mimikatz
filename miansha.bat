@@ -29,6 +29,11 @@ for %%a in (gentilkiwi MIMIKATZ KIWI oe.eo Vincent) do (
     tools\grep.exe -rl --exclude-dir .git --exclude-dir tools --exclude-dir .idea --exclude miansha.bat --exclude mimikatz.sln "%%a" . | tools\xargs tools\sed -b -i "s/%%a/!_out!/g"
 )
 
+call :RandomStr 10
+tools\grep.exe -rl --exclude-dir .git --exclude-dir tools --exclude-dir .idea --exclude miansha.bat --exclude mimikatz.sln "LSASS minidump" . | tools\xargs tools\sed -b -i "s/LSASS minidump/!_out!/g"
+
+call :RandomStr 10
+tools\grep.exe -rl --exclude-dir .git --exclude-dir tools --exclude-dir .idea --exclude miansha.bat --exclude mimikatz.sln "LSA dump" . | tools\xargs tools\sed -b -i "s/LSA dump/!_out!/g"
 
 
 :: =================
