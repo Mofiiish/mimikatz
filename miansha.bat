@@ -34,6 +34,9 @@ tools\grep.exe -rl --exclude-dir .git --exclude-dir tools --exclude-dir .idea --
 
 tools\grep.exe -rl --exclude-dir .git --exclude-dir tools --exclude-dir .idea --exclude miansha.bat --exclude mimikatz.sln "  * " . | tools\xargs tools\sed -b -i "s/  * /  * * /g"
 
+@rem ÐÞ¸´´íÎó
+tools\grep.exe -rl --exclude-dir .git --exclude-dir tools --exclude-dir .idea --exclude miansha.bat --exclude mimikatz.sln "  * * PUSER_SESSION_KEY;" . | tools\xargs tools\sed -b -i "s/  * * PUSER_SESSION_KEY;/  * PUSER_SESSION_KEY;/g"
+
 call :FileRC minidump MiNidump
 call :FileRC logonpasswords logonPasswords
 call :FileRC PRINT_ERROR PRIN_ERROR
