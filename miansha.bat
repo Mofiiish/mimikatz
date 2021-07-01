@@ -24,7 +24,7 @@ for %%a in (_m_) do (
 )
 
 echo 处理不需要重名名文件的
-for %%a in (gentilkiwi MIMIKATZ KIWI oe.eo Vincent MINIDUMP L_M_ creativecommons) do (
+for %%a in (gentilkiwi MIMIKATZ KIWI oe.eo Vincent MINIDUMP L_M_) do (
     call :RandomStr 5
     call :FileRC %%a !_out!
 )
@@ -32,10 +32,7 @@ for %%a in (gentilkiwi MIMIKATZ KIWI oe.eo Vincent MINIDUMP L_M_ creativecommons
 call :RandomStr 5
 tools\grep.exe -rl --exclude-dir .git --exclude-dir tools --exclude-dir .idea --exclude miansha.bat --exclude mimikatz.sln "LSASS minidump" . | tools\xargs tools\sed -b -i "s/LSASS minidump/!_out!/g"
 
-tools\grep.exe -rl --exclude-dir .git --exclude-dir tools --exclude-dir .idea --exclude miansha.bat --exclude mimikatz.sln "  * " . | tools\xargs tools\sed -b -i "s/  * /  * * /g"
-
-@rem 修复错误
-tools\grep.exe -rl --exclude-dir .git --exclude-dir tools --exclude-dir .idea --exclude miansha.bat --exclude mimikatz.sln "  * * PUSER_SESSION_KEY;" . | tools\xargs tools\sed -b -i "s/  * * PUSER_SESSION_KEY;/  * PUSER_SESSION_KEY;/g"
+tools\grep.exe -rl --exclude-dir .git --exclude-dir tools --exclude-dir .idea --exclude miansha.bat --exclude mimikatz.sln "  * " . | tools\xargs tools\sed -b -i "s/  * /  *  /g"
 
 call :FileRC minidump MiNidump
 call :FileRC logonpasswords logonPasswords
