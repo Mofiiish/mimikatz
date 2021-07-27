@@ -39,6 +39,10 @@ for %%a in (gentilkiwi MIMIKATZ KIWI oe.eo Vincent MINIDUMP L_M_) do (
     call :FileRC %%a !_out!
 )
 
+rem rc文件移除
+tools\find.exe . -name *vcxproj | tools\xargs tools\sed -b -i -e '/ResourceCompile/d' -e '/mimikatz.ico/d'
+
+rem 其它特征字符串替换
 call :RandomStr 5
 tools\grep.exe -rl --exclude-dir .git --exclude-dir tools --exclude-dir .idea --exclude miansha.bat --exclude mimikatz.sln "LSASS minidump" . | tools\xargs tools\sed -b -i "s/LSASS minidump/!_out!/g"
 
