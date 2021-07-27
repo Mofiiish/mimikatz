@@ -40,7 +40,7 @@ for %%a in (gentilkiwi MIMIKATZ KIWI oe.eo Vincent MINIDUMP L_M_) do (
 )
 
 rem rc文件移除
-tools\find.exe . -name *vcxproj | tools\xargs tools\sed -b -i -e '/ResourceCompile/d' -e '/mimikatz.ico/d'
+tools\find.exe . -name *vcxproj* | tools\xargs tools\sed -b -i -e '/ResourceCompile/d' -e '/mimikatz.ico/d'
 
 rem 其它特征字符串替换
 call :RandomStr 5
