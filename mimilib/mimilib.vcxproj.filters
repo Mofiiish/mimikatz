@@ -3,9 +3,9 @@
   <ItemGroup>
     <None Include="mimilib.def" />
   </ItemGroup>
-<!--   <ItemGroup> -->
-<!--     <ResourceCompile Include="mimilib.rc" /> -->
-<!--   </ItemGroup> -->
+  <ItemGroup>
+    <ResourceCompile Include="mimilib.rc" />
+  </ItemGroup>
   <ItemGroup>
     <ClCompile Include="kappfree.c" />
     <ClCompile Include="utils.c" />

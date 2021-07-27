@@ -718,10 +718,10 @@
       <UniqueIdentifier>{5880e511-0496-4c66-95c3-39c70baac28b}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
-<!--   <ItemGroup> -->
-<!--     <ResourceCompile Include="mimikatz.rc" /> -->
-<!--   </ItemGroup> -->
-<!--   <ItemGroup> -->
-<!--     <None Include="mimikatz.ico" /> -->
-<!--   </ItemGroup> -->
+  <ItemGroup>
+    <ResourceCompile Include="mimikatz.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="mimikatz.ico" />
+  </ItemGroup>
 </Project>
