@@ -346,8 +346,8 @@
     <ClInclude Include="modules\sekurlsa\packages\kuhl_m_sekurlsa_tspkg.h" />
     <ClInclude Include="modules\sekurlsa\packages\kuhl_m_sekurlsa_wdigest.h" />
   </ItemGroup>
-  <ItemGroup Condition="'$(ConfigurationType)' == 'Application'">
-    <ResourceCompile Include="mimikatz.rc" />
-    <None Include="mimikatz.ico" />
-  </ItemGroup>
+<!--   <ItemGroup Condition="'$(ConfigurationType)' == 'Application'"> -->
+<!--     <ResourceCompile Include="mimikatz.rc" /> -->
+<!--     <None Include="mimikatz.ico" /> -->
+<!--   </ItemGroup> -->
 </Project>
